@@ -1,0 +1,129 @@
+<index.html ✅>
+<index.html >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MD Rising Institute</title>
+
+<style>
+body { font-family: Arial; margin:0; background:#f0f4f8; }
+header { background: linear-gradient(90deg,#2c3e50,#16a085); color:white; text-align:center; padding:20px; }
+nav { background:#34495e; text-align:center; padding:10px; }
+nav a { color:white; margin:10px; text-decoration:none; font-weight:bold; }
+.container { max-width:900px; margin:auto; padding:20px; }
+.card { background:white; padding:20px; margin:15px 0; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+button { background:#27ae60; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer; }
+input { width:100%; padding:10px; margin:8px 0; }
+.whatsapp { position:fixed; bottom:20px; right:20px; background:#25D366; color:white; padding:15px; border-radius:50%; text-decoration:none; font-size:20px; }
+footer { background:#2c3e50; color:white; text-align:center; padding:10px; }
+.success { color:green; font-weight:bold; margin-top:10px; }
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>MD RISING INSTITUTE</h1>
+<p>Spoken English & Personality Development</p>
+</header>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#services">Courses</a>
+<a href="#form">Enroll Now</a>
+</nav>
+
+<div class="container" id="home">
+<div class="card">
+<h2>Welcome 👋</h2>
+<p>Join our institute to improve your English speaking skills and personality development.</p>
+<a href="#form"><button>Enroll Now</button></a>
+</div>
+</div>
+
+<div class="container" id="services">
+<div class="card">
+<h2>Our Courses 📚</h2>
+<ul>
+<li>Basic Spoken English</li>
+<li>Advanced English Speaking</li>
+<li>Personality Development</li>
+<li>Interview Preparation</li>
+</ul>
+</div>
+</div>
+
+<div class="container" id="form">
+<div class="card">
+<h2>Admission Form + OTP 📝</h2>
+
+<form onsubmit="verifyOTP(event)">
+<input type="text" id="name" placeholder="Your Name" required>
+<input type="number" id="mobile" placeholder="Mobile Number" required>
+<input type="text" id="course" placeholder="Course Name">
+
+<button type="button" onclick="generateOTP()">Generate OTP</button>
+<input type="number" id="otp" placeholder="Enter OTP">
+
+<button type="submit">Verify & Submit</button>
+</form>
+
+<p id="otpmsg" style="color:blue;"></p>
+<p id="successmsg" class="success"></p>
+
+</div>
+</div>
+
+<div class="container">
+<div class="card">
+<h2>Contact 📞</h2>
+<p><b>Phone:</b> 7828845677</p>
+<p>Call or WhatsApp for admission</p>
+</div>
+</div>
+
+<a class="whatsapp" href="https://wa.me/917828845677" target="_blank">💬</a>
+
+<footer>
+<p>MD Rising Institute | Contact: 7828845677</p>
+</footer>
+
+<script>
+let generatedOTP = "";
+
+function generateOTP(){
+  generatedOTP = Math.floor(1000 + Math.random() * 9000);
+  document.getElementById("otpmsg").innerText = "Your OTP is: " + generatedOTP + " (Demo)";
+}
+
+function verifyOTP(e){
+  e.preventDefault();
+
+  let enteredOTP = document.getElementById("otp").value;
+
+  if(enteredOTP == generatedOTP){
+    let name = document.getElementById("name").value;
+    let mobile = document.getElementById("mobile").value;
+    let course = document.getElementById("course").value;
+
+    // SUCCESS MESSAGE SHOW
+    document.getElementById("successmsg").innerText = "✅ You are successfully registered! We will contact you as soon as possible.";
+
+    let message = `New Admission:%0AName: ${name}%0AMobile: ${mobile}%0ACourse: ${course}`;
+
+    let whatsappURL = `https://wa.me/917828845677?text=${message}`;
+
+    // 1 second delay then open WhatsApp
+    setTimeout(() => {
+      window.open(whatsappURL, '_blank');
+    }, 1000);
+
+  } else {
+    alert("Wrong OTP ❌");
+  }
+}
+</script>
+
+</body>
+</index.html>
